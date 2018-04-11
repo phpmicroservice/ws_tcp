@@ -1,7 +1,4 @@
 <?php
-define('PACKAGE_EOF', '_pms_');
-
-
 /**
  * 收到返回值
  * @param swoole_client $client
