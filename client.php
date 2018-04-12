@@ -22,7 +22,7 @@ function receive(swoole_client $client, $data)
  */
 function receive2(swoole_client $client, $value)
 {
-    echo '代理器延迟: ' .(microtime(true) - $value['p'][2])." \n";
+    echo '代理器延迟: ' . (microtime(true) - $value['p'][2]) . " \n";
     $fd = $value['p'][1];
     $value['p'] = $value['p'][0];
 
@@ -66,33 +66,48 @@ $server->on('message', function (swoole_websocket_server $server, $frame) {
             ]));
             return;
         }
+        proxy_send($server, $data, $fd);
 
-        if (isset($data['p'])) {
-            $p = [
-                $data['p'],
-                $fd,
-                microtime(true)
-            ];
-        } else {
-            $p = [
-                '',
-                $fd,
-                microtime(true)
-            ];
-        }
-        $data['p'] = $p;
-        echo "已转发 \n";
-        $server->proxy_client->send(\swoole_serialize::pack($data) . PACKAGE_EOF);
     } else {
 
     }
 });
+/**
+ * 代理发送
+ * @param swoole_websocket_server $server
+ * @param $data
+ * @param $fd
+ */
+function proxy_send(swoole_websocket_server $server, $data, $fd)
+{
+    if (isset($data['p'])) {
+        $p = [
+            $data['p'],
+            $fd,
+            microtime(true)
+        ];
+    } else {
+        $p = [
+            '',
+            $fd,
+            microtime(true)
+        ];
+    }
+    $data['p'] = $p;
+    echo "已转发 \n";
+    $server->proxy_client->send(\swoole_serialize::pack($data) . PACKAGE_EOF);
+}
 
 $server->on('close', function ($ser, $fd) {
     echo "client {$fd} closed\n";
 });
+/**
+ * 服务器开启
+ * @param swoole_server $server
+ */
+function WorkerStart(swoole_server $server)
+{
 
-$server->on('WorkerStart', function (swoole_server  $server) {
 
 # 客户端
     $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
@@ -106,7 +121,7 @@ $server->on('WorkerStart', function (swoole_server  $server) {
         echo "代理器链接成功! \n";
     });
     $client->on("receive", 'receive');
-    $client->swoole_server=$server;
+    $client->swoole_server = $server;
     $client->on("error", function (swoole_client $client) {
         echo "代理器 error\n";
         echo $client->errCode;
@@ -121,7 +136,9 @@ $server->on('WorkerStart', function (swoole_server  $server) {
         }, $client);
     });
     $server->proxy_client = $client;
-    $client->connect(TCP_SERVER_HOST,TCP_SERVER_PORT);
-});
+    $client->connect(TCP_SERVER_HOST, TCP_SERVER_PORT);
+}
+
+$server->on('WorkerStart', 'WorkerStart');
 
 $server->start();
