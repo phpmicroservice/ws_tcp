@@ -1,4 +1,4 @@
-FROM  phpmicroservice/docker_php:cli71_swoole_phalcon
+FROM  phpmicroservice/docker_php:cli72_swoole_phalcon
 
 MAINTAINER      Dongasai "1514582970@qq.com"
 
