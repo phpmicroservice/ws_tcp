@@ -4,15 +4,13 @@
  * @param swoole_client $client
  * @param $data
  */
-function receive(swoole_client $client, $data)
+function receive(swoole_client $client, $string)
 {
+    var_dump(get_class($client));
     # 收到返回
-    $data_arr = explode(PACKAGE_EOF, rtrim($data, PACKAGE_EOF));
-    foreach ($data_arr as $string) {
-        $value = \swoole_serialize::unpack(rtrim($string, PACKAGE_EOF));
-        var_dump(get_class($client));
-        receive2($client, $value);
-    }
+
+    $data2 = decode($string);
+    receive2($client, $data2);
 }
 
 /**
@@ -95,7 +93,30 @@ function proxy_send(swoole_websocket_server $server, $data, $fd)
     }
     $data['p'] = $p;
     echo "已转发 \n";
-    $server->proxy_client->send(\swoole_serialize::pack($data) . PACKAGE_EOF);
+    $server->proxy_client->send(encode($data));
+}
+
+/**
+ * 编码
+ * @param array $data
+ * @return string
+ */
+function encode(array $data)
+{
+    $msg_normal = \pms\Serialize::pack($data);
+    $msg_length = pack("N", strlen($msg_normal)) . $msg_normal;
+    return $msg_length;
+}
+
+/**
+ * 解码
+ * @param $string
+ */
+function decode($data)
+{
+    $length = unpack("N", $data)[1];
+    $msg = substr($data, -$length);
+    return \pms\Serialize::unpack($msg);
 }
 
 $server->on('close', function ($ser, $fd) {
@@ -112,10 +133,11 @@ function WorkerStart(swoole_server $server)
 # 客户端
     $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
 
-    $option = [
-        'open_eof_check' => true, //打开EOF检测
-        'package_eof' => PACKAGE_EOF, //设置EOF
-    ];
+    $option = ['open_length_check' => true,
+        'package_max_length' => 83886080,
+        'package_length_type' => 'N',
+        'package_length_offset' => 0,
+        'package_body_offset' => 4,];
     $client->set($option);
     $client->on("connect", function (swoole_client $cli) {
         echo "代理器链接成功! \n";

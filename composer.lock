@@ -1,0 +1,172 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "2e4b9604e6ff7d959d2232d5ddeacf98",
+    "packages": [
+        {
+            "name": "apache/log4php",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apache/logging-log4php.git",
+                "reference": "cac428b6f67d2035af39784da1d1a299ef42fcf2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apache/logging-log4php/zipball/cac428b6f67d2035af39784da1d1a299ef42fcf2",
+                "reference": "cac428b6f67d2035af39784da1d1a299ef42fcf2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/main/php/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A versatile logging framework for PHP",
+            "homepage": "http://logging.apache.org/log4php/",
+            "keywords": [
+                "log",
+                "logging",
+                "php"
+            ],
+            "time": "2012-10-26T09:13:25+00:00"
+        },
+        {
+            "name": "phpmicroservice/funch",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmicroservice/funch.git",
+                "reference": "e8754c14a62a8258517ad4675a47dbe979e8ac0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmicroservice/funch/zipball/e8754c14a62a8258517ad4675a47dbe979e8ac0b",
+                "reference": "e8754c14a62a8258517ad4675a47dbe979e8ac0b",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "funch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dongasai",
+                    "email": "1514582970@qq.com",
+                    "homepage": "http://www.2xso.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "PHP的基础函数的增强版本或补充功能",
+            "homepage": "https://github.com/phpmicroservice/funch",
+            "keywords": [
+                "function",
+                "lodash",
+                "method"
+            ],
+            "time": "2018-04-27T02:58:42+00:00"
+        },
+        {
+            "name": "phpmicroservice/pms-frame",
+            "version": "0.3.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmicroservice/pms.git",
+                "reference": "8a96725585908a21c8d6ac407d1a2258ca9890c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmicroservice/pms/zipball/8a96725585908a21c8d6ac407d1a2258ca9890c6",
+                "reference": "8a96725585908a21c8d6ac407d1a2258ca9890c6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-phalcon": "3.4.*",
+                "ext-swoole": "4.*",
+                "ext-swoole_serialize": "0.1.*",
+                "php": ">7.2",
+                "phpmicroservice/funch": "0.*"
+            },
+            "require-dev": {
+                "eaglewu/swoole-ide-helper": "dev-master@dev",
+                "phalcon/ide-stubs": "v3.4.*"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "pms\\": "src/"
+                },
+                "files": [
+                    "src/function.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dongasai",
+                    "email": "1514582970@qq.com",
+                    "homepage": "http://www.2xso.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "一个采用Swoole做底层,采用Phalcon作为框架类库的微服务框架",
+            "homepage": "http://pms.2xso.com",
+            "keywords": [
+                "microservice",
+                "phalcon",
+                "swoole",
+                "tcp",
+                "websockect"
+            ],
+            "support": {
+                "source": "https://github.com/phpmicroservice/pms/tree/0.3",
+                "issues": "https://github.com/phpmicroservice/pms/issues"
+            },
+            "time": "2019-02-17T10:16:48+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "phpmicroservice/pms-frame": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
