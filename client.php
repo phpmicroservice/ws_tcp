@@ -28,7 +28,7 @@ function receive2(swoole_client $client, $value)
         $re = $client->swoole_server->push($fd, json_encode($value));
         echo "代理返回结果!:" . $re;
     } else {
-
+        echo "客户端已离线!".$fd;
     }
 }
 

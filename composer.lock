@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba29e9c8f552ca2b222bdee196dffaa5",
+    "content-hash": "addabada30bf6aed1de3b1aa699e87f7",
     "packages": [
         {
             "name": "apache/log4php",
@@ -104,7 +104,7 @@
             "source": {
                 "type": "git",
                 "url": "https://gitee.com/xswkspms/pms.git",
-                "reference": "a0a406c364341cb57cc9df1f79230d9edbf0e6ac"
+                "reference": "e1efbd9a63452f2721ea9a01b4d7d20f8a0c0713"
             },
             "require": {
                 "ext-phalcon": "*",
@@ -149,7 +149,7 @@
                 "tcp",
                 "websockect"
             ],
-            "time": "2019-11-12T04:22:39+00:00"
+            "time": "2019-11-15T16:39:04+00:00"
         }
     ],
     "packages-dev": [],
